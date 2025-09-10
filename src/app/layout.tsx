@@ -2,6 +2,7 @@ import { Manrope } from "next/font/google";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "@/components/shared/Header";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -29,7 +30,7 @@ const generalSans = localFont({
 
 export const metadata: Metadata = {
   title: "ENA EMA",
-  description: "Your company description",
+  description: "Strategic Landing Page",
 };
 
 export default function RootLayout({
@@ -43,7 +44,10 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${manrope.variable} ${generalSans.variable}`}
     >
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
