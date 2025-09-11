@@ -1,5 +1,6 @@
 import CaseStudiesSection from "@/components/home/Case";
 import HeroSection from "@/components/home/Hero";
+import PricingPlanSection from "@/components/home/PricingPlans";
 import Trust from "@/components/home/Trust";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
       <HeroSection />
       <Trust />
       <CaseStudiesSection />
+      <PricingPlanSection />
     </>
   );
 }
