@@ -1,10 +1,9 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
-
+import { motion, HTMLMotionProps } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends HTMLMotionProps<"button"> {
   variant?: "primary" | "secondary";
   size?: "sm" | "md" | "lg";
   icon?: LucideIcon;
@@ -29,7 +28,7 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-medium transition-all duration-300 focus:outline-none disabled:opacity-70 disabled:cursor-not-allowed";
+      "inline-flex items-center justify-center font-medium transition-all duration-300 focus:outline-none disabled:opacity-70 disabled:cursor-not-allowed min-w-[180px]";
 
     const variants = {
       primary: `
@@ -65,7 +64,6 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
             fontSize: "16px",
             fontWeight: "500",
             lineHeight: "normal",
-            letterSpacing: "0",
           }
         : {};
 
@@ -99,3 +97,5 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
   }
 );
+
+CustomButton.displayName = "CustomButton";

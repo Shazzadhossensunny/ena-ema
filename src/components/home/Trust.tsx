@@ -45,36 +45,38 @@ const Trust = () => {
 
   return (
     <section className="py-15 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-manrope-medium-48 text-light mb-2 tracking-tight">
-            Why Businesses <span className="text-primary">Trust Us</span> With
-            Their Designs
-          </h2>
-          <p className="text-general-sans-16 text-light max-w-2xl mx-auto">
-            We combine proven conversion frameworks with agency-level design to
-            deliver results that matter.
-          </p>
-        </motion.div>
+      <div className="w-full max-w-[1440px]  mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1200px] mx-auto">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-manrope-medium-48 text-light mb-2 tracking-tight">
+              Why Businesses <span className="text-primary">Trust Us</span> With
+              Their Designs
+            </h2>
+            <p className="text-general-sans-16 text-light max-w-2xl mx-auto">
+              We combine proven conversion frameworks with agency-level design
+              to deliver results that matter.
+            </p>
+          </motion.div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9">
-          {trustData.map((item, index) => (
-            <CustomCard
-              key={index}
-              icon={item.icon}
-              title={item.title}
-              description={item.description}
-              index={index}
-            />
-          ))}
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9">
+            {trustData.map((item, index) => (
+              <CustomCard
+                key={index}
+                icon={item.icon}
+                title={item.title}
+                description={item.description}
+                index={index}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
