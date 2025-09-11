@@ -1,3 +1,4 @@
+import CallToAction from "@/components/home/CallToAction";
 import CaseStudiesSection from "@/components/home/Case";
 import FAQSection from "@/components/home/Faq";
 import HeroSection from "@/components/home/Hero";
@@ -16,6 +17,7 @@ export default function Home() {
       <IdeaSection />
       <TestimonialsSection />
       <FAQSection />
+      <CallToAction />
     </>
   );
 }
