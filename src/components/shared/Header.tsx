@@ -19,11 +19,11 @@ const Header = () => {
       {/* Header content */}
       <div className="relative z-10">
         {/* Container with max-width */}
-        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="max-w-[1200px] mx-auto">
             {/* Logo section */}
             <motion.div
-              className="flex justify-center pt-12 pb-8"
+              className="flex justify-center py-6"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
