@@ -150,7 +150,7 @@ const IdeaSection = () => {
     <section className="py-30 bg-background relative overflow-hidden">
       {/* Blur Effect */}
       <div
-        className="absolute left-0 bottom-44 w-52 h-52 rounded-full opacity-20"
+        className="absolute left-0 bottom-44 w-52 h-52 rounded-full opacity-20 bg-primary blur-[300px] z-50"
         style={{
           background: "var(--color-primary)",
           filter: "blur(300px)",
