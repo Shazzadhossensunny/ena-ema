@@ -147,13 +147,28 @@ const IdeaSection = () => {
   };
 
   return (
-    <section className="py-30 bg-background relative overflow-hidden">
-      {/* Blur Effect */}
-      <div
-        className="absolute left-0 bottom-44 w-52 h-52 rounded-full opacity-20 bg-primary blur-[300px] z-50"
+    <section
+      className="relative py-30 bg-background overflow-hidden"
+      style={{
+        paddingTop: "120px",
+        paddingBottom: "120px",
+        backgroundColor: "var(--color-background, #151E1B)",
+      }}
+    >
+      {/* Left Blur Effect */}
+      <motion.div
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 pointer-events-none"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1.2, delay: 0.3 }}
         style={{
-          background: "var(--color-primary)",
+          width: "204px",
+          height: "204px",
+          flexShrink: 0,
+          backgroundColor: "var(--color-primary, #1FFFA5)",
           filter: "blur(300px)",
+          borderRadius: "50%",
         }}
       />
 
@@ -165,7 +180,8 @@ const IdeaSection = () => {
               className="text-manrope-medium-48 text-light mb-2 tracking-tight"
               variants={headerVariants}
               initial="initial"
-              animate="animate"
+              whileInView="animate"
+              viewport={{ once: true }}
             >
               From Idea to Live Landing Page in{" "}
               <span className="text-primary">Just 5 Days</span>
@@ -175,7 +191,8 @@ const IdeaSection = () => {
               className="text-general-sans-16 text-light max-w-2xl mx-auto"
               variants={titleVariants}
               initial="initial"
-              animate="animate"
+              whileInView="animate"
+              viewport={{ once: true }}
             >
               Our streamlined process ensures fast delivery without compromising
               quality.
@@ -187,7 +204,8 @@ const IdeaSection = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto"
             variants={containerVariants}
             initial="initial"
-            animate="animate"
+            whileInView="animate"
+            viewport={{ once: true, margin: "-100px" }}
           >
             {processSteps.map((step, index) => (
               <ProcessCard key={step.title} step={step} index={index} />

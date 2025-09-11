@@ -5,18 +5,51 @@ import { CustomInput } from "../ui/core/CSINPUT/CustomInput";
 import { ArrowRight, Mail, Phone, User } from "lucide-react";
 import { CustomButton } from "../ui/core/CSBUTTON/CustomButton";
 import { TrustIndicators } from "../ui/core/TrustIndicators";
+
 export default function CallToAction() {
   return (
     <section
-      className="py-30 bg-background-dark"
+      className="relative py-30 bg-background-dark overflow-hidden"
       style={{
         paddingTop: "120px",
         paddingBottom: "120px",
         backgroundColor: "var(--color-background, #151E1B)",
       }}
     >
+      {/* Left Blur Effect */}
+      <motion.div
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 pointer-events-none"
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2, delay: 0.3 }}
+        style={{
+          width: "204px",
+          height: "204px",
+          flexShrink: 0,
+          backgroundColor: "var(--color-primary, #1FFFA5)",
+          filter: "blur(300px)",
+          borderRadius: "50%",
+        }}
+      />
+
+      {/* Right Blur Effect */}
+      <motion.div
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 pointer-events-none"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2, delay: 0.5 }}
+        style={{
+          width: "204px",
+          height: "204px",
+          flexShrink: 0,
+          backgroundColor: "var(--color-primary, #1FFFA5)",
+          filter: "blur(300px)",
+          borderRadius: "50%",
+        }}
+      />
+
       {/* Container */}
-      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1200px] mx-auto">
           {/* Main Heading - Responsive */}
           <motion.div
@@ -129,6 +162,7 @@ export default function CallToAction() {
               </div>
             </FormContainer>
           </motion.div>
+
           {/* Trust Indicators */}
           <TrustIndicators />
         </div>
