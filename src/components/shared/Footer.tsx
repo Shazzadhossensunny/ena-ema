@@ -2,10 +2,41 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Linkedin, Facebook, Instagram, Dribbble } from "lucide-react";
+import {
+  Linkedin,
+  Facebook,
+  Instagram,
+  Dribbble,
+  LucideIcon,
+} from "lucide-react";
 
-const Footer = () => {
-  const socialLinks = [
+// Types
+interface SocialLink {
+  name: string;
+  icon: LucideIcon | React.FC<React.SVGProps<SVGSVGElement>>;
+  href: string;
+  color: string;
+}
+
+// Custom Behance Icon Component
+const BehanceIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({
+  className,
+  ...props
+}) => (
+  <svg
+    className={className}
+    {...props}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    width="24"
+    height="24"
+  >
+    <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z" />
+  </svg>
+);
+
+const Footer: React.FC = () => {
+  const socialLinks: SocialLink[] = [
     {
       name: "LinkedIn",
       icon: Linkedin,
@@ -26,16 +57,7 @@ const Footer = () => {
     },
     {
       name: "Behance",
-      icon: ({ className, ...props }) => (
-        <svg
-          className={className}
-          {...props}
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
-          <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z" />
-        </svg>
-      ),
+      icon: BehanceIcon,
       href: "#",
       color: "#1769FF",
     },
@@ -65,7 +87,7 @@ const Footer = () => {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
@@ -77,7 +99,7 @@ const Footer = () => {
       x: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
@@ -89,7 +111,7 @@ const Footer = () => {
       x: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
+        ease: "easeOut" as const,
         staggerChildren: 0.1,
       },
     },
@@ -102,7 +124,7 @@ const Footer = () => {
       scale: 1,
       transition: {
         duration: 0.4,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
@@ -182,7 +204,10 @@ const Footer = () => {
                     }}
                     aria-label={social.name}
                   >
-                    <IconComponent size={24} />
+                    <IconComponent
+                      {...(social.name === "Behance" ? {} : { size: 24 })}
+                      className="w-6 h-6"
+                    />
                   </motion.a>
                 );
               })}

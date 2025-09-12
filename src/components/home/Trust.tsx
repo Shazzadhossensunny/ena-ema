@@ -1,5 +1,12 @@
 "use client";
-import { Rocket, Eye, Zap, DollarSign, RefreshCw, Trophy } from "lucide-react";
+import {
+  Rocket,
+  Zap,
+  DollarSign,
+  RefreshCw,
+  Trophy,
+  Palette,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import CustomCard from "../ui/core/CSCARD/CustomCard";
 
@@ -12,7 +19,7 @@ const Trust = () => {
         "Designs based on 100+ tested layouts that actually convert visitors into customers.",
     },
     {
-      icon: Eye,
+      icon: Palette,
       title: "Agency Level Design",
       description:
         "Modern, premium, and tailored for your brand - without the agency price tag.",
@@ -59,7 +66,7 @@ const Trust = () => {
               Why Businesses <span className="text-primary">Trust Us</span> With
               Their Designs
             </h2>
-            <p className="text-general-sans-16 text-light max-w-2xl mx-auto">
+            <p className="text-general-sans-16 text-light mx-auto">
               We combine proven conversion frameworks with agency-level design
               to deliver results that matter.
             </p>

@@ -2,10 +2,16 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const FAQSection = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
+// Types
+interface FAQItem {
+  question: string;
+  answer: string;
+}
 
-  const faqData = [
+const FAQSection: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const faqData: FAQItem[] = [
     {
       question: "How long does it take?",
       answer:
@@ -33,7 +39,7 @@ const FAQSection = () => {
     },
   ];
 
-  const toggleFAQ = (index) => {
+  const toggleFAQ = (index: number): void => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
@@ -55,7 +61,7 @@ const FAQSection = () => {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
@@ -67,7 +73,7 @@ const FAQSection = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
@@ -104,7 +110,9 @@ const FAQSection = () => {
               }}
             >
               Got Questions
-              <span style={{ color: "var(--color-primary, #1FFFA5)" }}>?</span>{" "}
+              <span style={{ color: "var(--color-primary, #1FFFA5)" }}>
+                ?
+              </span>{" "}
               We've Got The Answers
             </motion.h2>
 
@@ -117,7 +125,7 @@ const FAQSection = () => {
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  className="faq-item"
+                  className="faq-item space-y-6"
                   style={{
                     padding: "24px",
                     borderRadius: "12px",
@@ -128,55 +136,67 @@ const FAQSection = () => {
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <div className="flex items-start gap-4">
-                    {/* Dot */}
-                    <motion.div
-                      className="flex-shrink-0 mt-1"
+                  {/* Dot on the left */}
+                  <motion.div
+                    className="flex-shrink-0"
+                    animate={{
+                      backgroundColor:
+                        activeIndex === index
+                          ? "var(--color-primary, #1FFFA5)"
+                          : "var(--color-text-secondary-light, #666666)",
+                    }}
+                    transition={{ duration: 0.3 }}
+                    style={{
+                      width: "8px",
+                      height: "8px",
+                      borderRadius: "50%",
+                      backgroundColor:
+                        activeIndex === index
+                          ? "var(--color-primary, #1FFFA5)"
+                          : "var(--color-text-secondary-light, #666666)",
+                    }}
+                  />
+
+                  {/* Content area - Question and Answer */}
+                  <div className="min-w-0">
+                    {/* Question */}
+                    <motion.h4
+                      className="faq-question"
+                      style={{
+                        color: "var(--color-text-light, #F5F5F5)",
+                        fontFamily: "var(--font-manrope, Manrope)",
+                        fontSize: "24px",
+                        fontWeight: "700",
+                        lineHeight: "28px",
+                        letterSpacing: "-1px",
+                        margin: "0",
+                        marginBottom: activeIndex === index ? "16px" : "0px",
+                      }}
                       animate={{
-                        rotate: activeIndex === index ? 90 : 0,
-                        backgroundColor:
-                          activeIndex === index
-                            ? "var(--color-primary-light, #00e58a)"
-                            : "var(--color-primary, #1FFFA5)",
+                        marginBottom: activeIndex === index ? "16px" : "0px",
                       }}
                       transition={{ duration: 0.3 }}
-                      style={{
-                        width: "12px",
-                        height: "12px",
-                        borderRadius: "50%",
-                        backgroundColor: "var(--color-primary, #1FFFA5)",
-                      }}
-                    />
+                    >
+                      {faq.question}
+                    </motion.h4>
 
-                    <div className="flex-1 min-w-0">
-                      {/* Question */}
-                      <motion.h4
-                        className="faq-question"
-                        style={{
-                          color: "var(--color-text-light, #F5F5F5)",
-                          fontFamily: "var(--font-manrope, Manrope)",
-                          fontSize: "24px",
-                          fontWeight: "700",
-                          lineHeight: "26px",
-                          letterSpacing: "-1px",
-                          marginBottom: activeIndex === index ? "24px" : "0px",
-                        }}
-                        animate={{
-                          marginBottom: activeIndex === index ? "24px" : "0px",
-                        }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {faq.question}
-                      </motion.h4>
-
-                      {/* Answer */}
-                      <AnimatePresence>
-                        {activeIndex === index && (
+                    {/* Answer - positioned below question, aligned with question text */}
+                    <AnimatePresence>
+                      {activeIndex === index && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          style={{
+                            overflow: "hidden",
+                          }}
+                        >
                           <motion.p
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            initial={{ y: -10 }}
+                            animate={{ y: 0 }}
+                            exit={{ y: -10 }}
+                            transition={{ duration: 0.3 }}
                             style={{
                               color:
                                 "var(--color-text-secondary-light, #B2B2B2)",
@@ -186,14 +206,14 @@ const FAQSection = () => {
                               fontWeight: "400",
                               lineHeight: "26px",
                               letterSpacing: "0px",
-                              overflow: "hidden",
+                              margin: "0",
                             }}
                           >
                             {faq.answer}
                           </motion.p>
-                        )}
-                      </AnimatePresence>
-                    </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </motion.div>
               ))}

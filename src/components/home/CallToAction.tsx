@@ -58,7 +58,7 @@ export default function CallToAction() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-light leading-none px-4 sm:px-8 md:px-16 lg:px-[120px]">
+            <h1 className="text-light leading-none px-4 sm:px-8 md:px-16 lg:px-[72px]">
               <span
                 className="block mb-2"
                 style={{
@@ -81,7 +81,6 @@ export default function CallToAction() {
                   letterSpacing: "clamp(-2px, -0.1vw, -4px)",
                 }}
               >
-                Convert From Just{" "}
                 <span className="text-primary">Real Customers?</span>
               </span>
             </h1>
@@ -95,7 +94,7 @@ export default function CallToAction() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <p
-              className="text-light max-w-4xl mx-auto px-4"
+              className="text-light max-w-2xl mx-auto px-4"
               style={{
                 fontFamily: "var(--font-general-sans)",
                 fontSize: "clamp(16px, 2vw, 18px)",

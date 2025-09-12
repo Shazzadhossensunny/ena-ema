@@ -54,7 +54,7 @@ const TestimonialsSection = () => {
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1200px] mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
+          <div className="text-left mb-12">
             <h2
               className="text-manrope-medium-48 mb-2"
               style={{

@@ -5,8 +5,28 @@ import { motion } from "framer-motion";
 import { ArrowRight, Zap } from "lucide-react";
 import { CustomButton } from "../ui/core/CSBUTTON/CustomButton";
 
+// Types
+interface Plan {
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+}
+
+interface PlanCardProps {
+  plan: Plan;
+  index: number;
+  isHovered: boolean;
+  setHoveredCard: (index: number | null) => void;
+}
+
 // Plan Card Component
-const PlanCard = ({ plan, index, isHovered, setHoveredCard }: any) => {
+const PlanCard = ({
+  plan,
+  index,
+  isHovered,
+  setHoveredCard,
+}: PlanCardProps) => {
   const cardVariants = {
     initial: { opacity: 0, y: 50 },
     animate: {
@@ -24,6 +44,7 @@ const PlanCard = ({ plan, index, isHovered, setHoveredCard }: any) => {
     initial: {
       backgroundColor: "var(--color-foreground)",
       color: "var(--color-primary-light)",
+      boxShadow: "none",
     },
     hover: {
       backgroundColor: "var(--color-primary)",
@@ -91,15 +112,23 @@ const PlanCard = ({ plan, index, isHovered, setHoveredCard }: any) => {
         ))}
       </div>
 
-      {/* CTA Button */}
+      {/* CTA Button - Now responds to card hover */}
       <motion.button
         className="w-full px-8 py-4 rounded-lg text-general-sans-medium-16 font-medium transition-all duration-300"
         variants={buttonVariants}
         initial="initial"
-        whileHover="hover"
+        animate={isHovered ? "hover" : "initial"} // Button changes when card is hovered
+        whileHover="hover" // Also responds to direct button hover
         style={{
-          backgroundColor: "var(--color-foreground)",
-          color: "var(--color-primary-light)",
+          backgroundColor: isHovered
+            ? "var(--color-primary)"
+            : "var(--color-foreground)",
+          color: isHovered
+            ? "var(--color-primary-dark)"
+            : "var(--color-primary-light)",
+          boxShadow: isHovered
+            ? "0 7px 8px 0 rgba(255, 255, 255, 0.50) inset, 0 9px 24px 0 rgba(31, 255, 165, 0.25)"
+            : "none",
         }}
       >
         <div className="flex items-center justify-center gap-2">
@@ -112,9 +141,9 @@ const PlanCard = ({ plan, index, isHovered, setHoveredCard }: any) => {
 };
 
 const PricingPlanSection = () => {
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  const plans = [
+  const plans: Plan[] = [
     {
       name: "Basic",
       price: "200",
@@ -182,11 +211,11 @@ const PricingPlanSection = () => {
             initial="initial"
             animate="animate"
           >
-            <h2 className="text-manrope-medium-48 text-light mb-2 tracking-tight text-center">
+            <h2 className="text-manrope-medium-48 text-light mb-2 tracking-tight text-left">
               Simple, Transparent Pricing —{" "}
               <span className="text-primary">Choose Your Plan</span>
             </h2>
-            <p className="text-general-sans-16 text-light max-w-3xl mx-auto">
+            <p className="text-general-sans-16 text-light text-left">
               No hidden fees, no surprises. Just premium landing pages at
               unbeatable prices.
             </p>
@@ -242,11 +271,14 @@ const PricingPlanSection = () => {
             <p className="text-general-sans-16 text-light mb-12">
               Get 10% OFF + Free Hosting Setup when you book this week.
             </p>
-            <CustomButton width="166px">Claim my 10% discount</CustomButton>
+            <CustomButton className="flex items-center justify-center gap-2">
+              Claim my 10% discount <ArrowRight className="w-4 h-4" />
+            </CustomButton>
           </motion.div>
         </div>
       </div>
     </section>
   );
 };
+
 export default PricingPlanSection;

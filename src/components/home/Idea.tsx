@@ -1,10 +1,23 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { User, PenTool, Rocket } from "lucide-react";
+import { User, Rocket, Palette, LucideIcon } from "lucide-react";
+
+// Types
+interface ProcessStep {
+  day: string;
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
+
+interface ProcessCardProps {
+  step: ProcessStep;
+  index: number;
+}
 
 // Process Step Card Component
-const ProcessCard = ({ step, index }) => {
+const ProcessCard: React.FC<ProcessCardProps> = ({ step, index }) => {
   const cardVariants = {
     initial: { opacity: 0, y: 50 },
     animate: {
@@ -22,7 +35,11 @@ const ProcessCard = ({ step, index }) => {
     initial: { scale: 0 },
     animate: {
       scale: 1,
-      transition: { delay: index * 0.2 + 0.3, duration: 0.4, type: "spring" },
+      transition: {
+        delay: index * 0.2 + 0.3,
+        duration: 0.4,
+        type: "spring" as const,
+      },
     },
     hover: {
       scale: 1.1,
@@ -38,6 +55,8 @@ const ProcessCard = ({ step, index }) => {
       transition: { delay: index * 0.2 + 0.1, duration: 0.4 },
     },
   };
+
+  const IconComponent = step.icon;
 
   return (
     <motion.div
@@ -65,7 +84,7 @@ const ProcessCard = ({ step, index }) => {
         animate="animate"
         whileHover="hover"
       >
-        <step.icon className="w-9 h-9 text-primary" />
+        <IconComponent className="w-9 h-9 text-primary" />
       </motion.div>
 
       {/* Content */}
@@ -86,8 +105,8 @@ const ProcessCard = ({ step, index }) => {
 };
 
 // Main Idea Section Component
-const IdeaSection = () => {
-  const processSteps = [
+const IdeaSection: React.FC = () => {
+  const processSteps: ProcessStep[] = [
     {
       day: "Day 1",
       icon: User,
@@ -96,7 +115,7 @@ const IdeaSection = () => {
     },
     {
       day: "Day 2-4",
-      icon: PenTool,
+      icon: Palette,
       title: "Design & Development",
       description:
         "We create your custom landing page with proven conversion frameworks.",

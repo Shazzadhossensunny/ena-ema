@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
       {/* Background glow effect behind logo */}
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div
-          className="w-[816px] h-[816px] rounded-full opacity-20 bg-primary blur-[175.7px]"
+          className="w-[816px] h-[252px] rounded-full opacity-20 bg-primary blur-[175.7px]"
           style={{
             background: "var(--color-primary)",
             filter: "blur(175.7px)",
@@ -31,12 +32,20 @@ const Header = () => {
               <div className="text-center">
                 {/* Main Logo */}
                 <div className="text-light">
-                  <h1 className="text-2xl md:text-3xl font-bold tracking-wider">
-                    <span className="font-normal">ena·ema</span>
-                  </h1>
-                  <p className="text-xs md:text-sm text-secondary-light mt-1 tracking-[0.2em] uppercase">
-                    TECHNOLOGIES
-                  </p>
+                  <motion.div
+                    className="mb-2"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Image
+                      src="/images/logo.png"
+                      alt="Ena Ema Technologies Logo"
+                      width={120}
+                      height={40}
+                      className="mx-auto h-10 w-auto"
+                      priority
+                    />
+                  </motion.div>
                 </div>
               </div>
             </motion.div>

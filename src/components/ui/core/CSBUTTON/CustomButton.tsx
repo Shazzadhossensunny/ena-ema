@@ -10,6 +10,7 @@ interface ButtonProps extends HTMLMotionProps<"button"> {
   iconPosition?: "left" | "right";
   loading?: boolean;
   children: React.ReactNode;
+  width?: any;
 }
 
 export const CustomButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
