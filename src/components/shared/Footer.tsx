@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import {
@@ -215,22 +214,6 @@ const Footer: React.FC = () => {
           </motion.div>
         </div>
       </div>
-
-      <style jsx>{`
-        @media (max-width: 640px) {
-          .social-icon-link {
-            width: 20px !important;
-            height: 20px !important;
-          }
-        }
-
-        @media (max-width: 480px) {
-          footer {
-            padding-top: 48px !important;
-            padding-bottom: 48px !important;
-          }
-        }
-      `}</style>
     </footer>
   );
 };
