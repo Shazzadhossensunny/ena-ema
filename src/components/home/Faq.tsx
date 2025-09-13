@@ -79,43 +79,26 @@ const FAQSection: React.FC = () => {
   };
 
   return (
-    <section
-      className="py-30 bg-background-dark"
-      style={{
-        paddingTop: "120px",
-        paddingBottom: "120px",
-        backgroundColor: "var(--color-background, #151E1B)",
-      }}
-    >
+    <section className="py-30">
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1200px] mx-auto">
+          {/* Title */}
+          <motion.h2
+            variants={titleVariants}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="text-center mb-12 text-manrope-medium-48 text-light tracking-tight"
+          >
+            Got Questions
+            <span className="text-primary">?</span> We've Got The Answers
+          </motion.h2>
           <motion.div
             className="flex flex-col items-center"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
           >
-            {/* Title */}
-            <motion.h2
-              variants={titleVariants}
-              className="text-center mb-12"
-              style={{
-                color: "var(--color-text-light, #F5F5F5)",
-                fontFamily: "var(--font-manrope, Manrope)",
-                fontSize: "48px",
-                fontWeight: "500",
-                lineHeight: "72px",
-                letterSpacing: "-2px",
-                marginBottom: "48px",
-              }}
-            >
-              Got Questions
-              <span style={{ color: "var(--color-primary, #1FFFA5)" }}>
-                ?
-              </span>{" "}
-              We've Got The Answers
-            </motion.h2>
-
             {/* FAQ Container */}
             <motion.div
               variants={containerVariants}
@@ -125,20 +108,14 @@ const FAQSection: React.FC = () => {
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  className="faq-item space-y-6"
-                  style={{
-                    padding: "24px",
-                    borderRadius: "12px",
-                    backgroundColor: "var(--color-card, #192420)",
-                    cursor: "pointer",
-                  }}
+                  className=" space-y-6 p-6 rounded-xl bg-card cursor-pointer"
                   onClick={() => toggleFAQ(index)}
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
                 >
                   {/* Dot on the left */}
                   <motion.div
-                    className="flex-shrink-0"
+                    className="flex-shrink-0 w-3 h-3 rounded-full"
                     animate={{
                       backgroundColor:
                         activeIndex === index
@@ -147,9 +124,6 @@ const FAQSection: React.FC = () => {
                     }}
                     transition={{ duration: 0.3 }}
                     style={{
-                      width: "8px",
-                      height: "8px",
-                      borderRadius: "50%",
                       backgroundColor:
                         activeIndex === index
                           ? "var(--color-primary, #1FFFA5)"
@@ -161,15 +135,8 @@ const FAQSection: React.FC = () => {
                   <div className="min-w-0">
                     {/* Question */}
                     <motion.h4
-                      className="faq-question"
+                      className="text-manrope-bold-24 font-normal text-light"
                       style={{
-                        color: "var(--color-text-light, #F5F5F5)",
-                        fontFamily: "var(--font-manrope, Manrope)",
-                        fontSize: "24px",
-                        fontWeight: "700",
-                        lineHeight: "28px",
-                        letterSpacing: "-1px",
-                        margin: "0",
                         marginBottom: activeIndex === index ? "16px" : "0px",
                       }}
                       animate={{
@@ -197,17 +164,7 @@ const FAQSection: React.FC = () => {
                             animate={{ y: 0 }}
                             exit={{ y: -10 }}
                             transition={{ duration: 0.3 }}
-                            style={{
-                              color:
-                                "var(--color-text-secondary-light, #B2B2B2)",
-                              fontFamily:
-                                'var(--font-general-sans, "General Sans")',
-                              fontSize: "18px",
-                              fontWeight: "400",
-                              lineHeight: "26px",
-                              letterSpacing: "0px",
-                              margin: "0",
-                            }}
+                            className="text-general-sans-18 text-secondary-light"
                           >
                             {faq.answer}
                           </motion.p>
@@ -221,22 +178,6 @@ const FAQSection: React.FC = () => {
           </motion.div>
         </div>
       </div>
-
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .faq-question {
-            font-size: 20px !important;
-            line-height: 24px !important;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .faq-question {
-            font-size: 18px !important;
-            line-height: 22px !important;
-          }
-        }
-      `}</style>
     </section>
   );
 };

@@ -8,14 +8,7 @@ import { TrustIndicators } from "../ui/core/TrustIndicators";
 
 export default function CallToAction() {
   return (
-    <section
-      className="relative py-30 bg-background-dark overflow-hidden"
-      style={{
-        paddingTop: "120px",
-        paddingBottom: "120px",
-        backgroundColor: "var(--color-background, #151E1B)",
-      }}
-    >
+    <section className="relative py-30 bg-background-dark overflow-hidden">
       {/* Left Blur Effect */}
       <motion.div
         className="absolute left-0 top-1/2 transform -translate-y-1/2 pointer-events-none"
@@ -53,20 +46,16 @@ export default function CallToAction() {
         <div className="max-w-[1200px] mx-auto">
           {/* Main Heading - Responsive */}
           <motion.div
-            className="text-center mb-6"
+            className="text-center mb-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-light leading-none px-4 sm:px-8 md:px-16 lg:px-[72px]">
+            <h1 className="text-manrope-bold-72 text-light leading-none px-4 sm:px-8 md:px-16 lg:px-[72px]">
               <span
                 className="block mb-2"
                 style={{
-                  fontFamily: "var(--font-manrope)",
                   fontSize: "clamp(24px, 4vw, 72px)",
-                  fontWeight: "700",
-                  lineHeight: "1.1",
-                  letterSpacing: "clamp(-2px, -0.1vw, -4px)",
                 }}
               >
                 Ready to Turn Visitors Into
@@ -74,11 +63,7 @@ export default function CallToAction() {
               <span
                 className="block"
                 style={{
-                  fontFamily: "var(--font-manrope)",
                   fontSize: "clamp(24px, 4vw, 72px)",
-                  fontWeight: "700",
-                  lineHeight: "1.1",
-                  letterSpacing: "clamp(-2px, -0.1vw, -4px)",
                 }}
               >
                 <span className="text-primary">Real Customers?</span>
@@ -88,19 +73,15 @@ export default function CallToAction() {
 
           {/* Description - Responsive */}
           <motion.div
-            className="text-center mb-4"
+            className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <p
-              className="text-light max-w-2xl mx-auto px-4"
+              className="text-light text-general-sans-18 max-w-xl mx-auto"
               style={{
-                fontFamily: "var(--font-general-sans)",
                 fontSize: "clamp(16px, 2vw, 18px)",
-                fontWeight: "400",
-                lineHeight: "clamp(22px, 3vw, 26px)",
-                letterSpacing: "0",
               }}
             >
               Don't settle for an average page. Get a premium,
