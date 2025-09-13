@@ -56,7 +56,7 @@ const PlanCard = ({
 
   return (
     <motion.div
-      className={`relative bg-card rounded-2xl p-9 ${
+      className={`relative bg-card rounded-2xl p-9 flex flex-col ${
         isHovered && plan.name === "Standard" ? "border-2 border-primary" : ""
       }`}
       variants={cardVariants}
@@ -81,30 +81,28 @@ const PlanCard = ({
       )}
 
       {/* Plan Header */}
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-manrope-bold-24 text-light">{plan.name}</h3>
-        <span className="text-manrope-bold-24 text-primary">${plan.price}</span>
+      <div className="flex items-center justify-between mb-2 text-manrope-bold-24 ">
+        <h3 className="text-light">{plan.name}</h3>
+        <span className=" text-primary">${plan.price}</span>
       </div>
 
       {/* Plan Description */}
-      <p className="text-general-sans-14 text-light mb-12">
-        {plan.description}
-      </p>
+      <p className="text-general-sans-14 text-light">{plan.description}</p>
 
       {/* Divider */}
-      <div className="w-full h-px bg-stroke mb-12"></div>
+      <div className="w-full h-px bg-stroke my-12"></div>
 
       {/* Features List */}
-      <div className="space-y-3 mb-12">
+      <div className="space-y-3 mb-12 flex-1">
         {plan.features.map((feature, idx) => (
           <motion.div
             key={idx}
-            className="flex items-start gap-3"
+            className="flex items-center gap-3"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.2 + idx * 0.1, duration: 0.4 }}
           >
-            <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+            <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
             <span className="text-general-sans-12 text-secondary-light">
               {feature}
             </span>
@@ -117,8 +115,8 @@ const PlanCard = ({
         className="w-full px-8 py-4 rounded-lg text-general-sans-medium-16 font-medium transition-all duration-300"
         variants={buttonVariants}
         initial="initial"
-        animate={isHovered ? "hover" : "initial"} // Button changes when card is hovered
-        whileHover="hover" // Also responds to direct button hover
+        animate={isHovered ? "hover" : "initial"}
+        whileHover="hover"
         style={{
           backgroundColor: isHovered
             ? "var(--color-primary)"
@@ -150,34 +148,33 @@ const PricingPlanSection = () => {
       description: "Perfect for solopreneurs",
       features: [
         "1 Landing Page (Design + Development)",
-        "Mobile Responsive Design",
-        "Basic SEO Optimization",
-        "Contact Form Integration",
-        "1 Week Delivery",
+        "Hosting Deployment",
+        "5-Day Delivery",
+        "Basic Support",
       ],
     },
     {
       name: "Standard",
       price: "400",
-      description: "Perfect for growing businesses",
+      description: "Best balance of value & features",
       features: [
-        "3 Landing Pages (Design + Development)",
-        "Advanced Mobile Optimization",
-        "Advanced SEO & Analytics",
-        "CRM Integration",
-        "A/B Testing Setup",
+        "Everything in Basic",
+        "Extra Custom Section",
+        "Free Hosting Setup",
+        "Free Consultation Call",
+        "Priority Support",
       ],
     },
     {
       name: "Premium",
-      price: "800",
-      description: "Perfect for enterprises",
+      price: "500",
+      description: "For brands & agencies",
       features: [
-        "5 Landing Pages (Design + Development)",
-        "Custom Animations & Interactions",
-        "Advanced Analytics Dashboard",
-        "Multi-platform Integration",
-        "Priority Support & Maintenance",
+        "Everything in Standard",
+        "Advanced Animations",
+        "Priority Delivery (3 Days)",
+        "6 Months Free Support",
+        "Performance Optimization",
       ],
     },
   ];
@@ -223,7 +220,7 @@ const PricingPlanSection = () => {
 
           {/* Pricing Cards */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12"
             variants={containerVariants}
             initial="initial"
             animate="animate"
@@ -246,7 +243,7 @@ const PricingPlanSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
           >
-            <Zap className="w-6 h-6 text-primary flex-shrink-0" />
+            <Zap className="w-9 h-9 text-primary flex-shrink-0" />
             <div>
               <h3 className="text-manrope-bold-24 text-light mb-2">
                 Limited Availability
@@ -260,7 +257,7 @@ const PricingPlanSection = () => {
 
           {/* Special Offer */}
           <motion.div
-            className="bg-card rounded-2xl py-12 px-6 text-center"
+            className="bg-card rounded-2xl py-12 text-center"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1, duration: 0.6 }}
@@ -271,7 +268,7 @@ const PricingPlanSection = () => {
             <p className="text-general-sans-16 text-light mb-12">
               Get 10% OFF + Free Hosting Setup when you book this week.
             </p>
-            <CustomButton className="flex items-center justify-center gap-2">
+            <CustomButton className="flex items-center justify-center gap-3">
               Claim my 10% discount <ArrowRight className="w-4 h-4" />
             </CustomButton>
           </motion.div>

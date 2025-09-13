@@ -1,12 +1,14 @@
 "use client";
-
+import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import { Star } from "lucide-react";
 import "swiper/css";
-import "swiper/css/pagination";
+import Image from "next/image";
+import { useRef } from "react";
 
-const testimonials = [
+// Duplicate testimonials to ensure smooth looping
+const originalTestimonials = [
   {
     id: 1,
     text: "They delivered a landing page better than agencies charging 10x more. My conversion rate doubled within the first week!",
@@ -41,215 +43,154 @@ const testimonials = [
   },
 ];
 
-const TestimonialsSection = () => {
-  return (
-    <section
-      className="py-30 bg-background"
-      style={{
-        paddingTop: "120px",
-        paddingBottom: "120px",
-        backgroundColor: "var(--color-background, #151E1B)",
-      }}
-    >
-      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-[1200px] mx-auto">
-          {/* Header */}
-          <div className="text-left mb-12">
-            <h2
-              className="text-manrope-medium-48 mb-2"
-              style={{
-                color: "var(--color-text-light, #F5F5F5)",
-                fontFamily: "var(--font-manrope, Manrope)",
-                fontSize: "48px",
-                fontStyle: "normal",
-                fontWeight: "500",
-                lineHeight: "72px",
-                letterSpacing: "-2px",
-              }}
-            >
-              What Our Clients Are Saying{" "}
-              <span
-                style={{
-                  color: "var(--color-primary, #1FFFA5)",
-                }}
-              >
-                About Us
-              </span>
-            </h2>
-            <div style={{ marginBottom: "8px" }}></div>
-            <p
-              className="text-general-sans-16"
-              style={{
-                color: "var(--color-text-light, #F5F5F5)",
-                fontFamily: 'var(--font-general-sans, "General Sans")',
-                fontSize: "16px",
-                fontStyle: "normal",
-                fontWeight: "400",
-                lineHeight: "24px",
-                letterSpacing: "0px",
-              }}
-            >
-              Real feedback from real businesses who've seen real results.
-            </p>
-          </div>
+// Create multiple copies for smooth infinite loop
+const testimonials = [
+  ...originalTestimonials,
+  ...originalTestimonials.map((item) => ({ ...item, id: item.id + 100 })),
+  ...originalTestimonials.map((item) => ({ ...item, id: item.id + 200 })),
+];
 
-          {/* Testimonials Slider */}
-          <div style={{ marginTop: "48px" }}>
+const TestimonialsSection = () => {
+  const swiperRef = useRef<any>(null);
+
+  const headerVariants = {
+    initial: { opacity: 0, y: 30 },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  };
+
+  const titleVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, delay: 0.2 },
+    },
+  };
+
+  const handleMouseEnter = () => {
+    if (swiperRef.current && swiperRef.current.autoplay) {
+      swiperRef.current.autoplay.stop();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (swiperRef.current && swiperRef.current.autoplay) {
+      swiperRef.current.autoplay.start();
+    }
+  };
+
+  return (
+    <section className="py-30 bg-background">
+      <div className="w-full">
+        {/* Header with left padding */}
+        <div className="px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto">
+          <div className="max-w-[1200px] mx-auto">
+            <div className="text-left mb-12">
+              <motion.h2
+                className="text-manrope-medium-48 text-light mb-2 tracking-tight"
+                variants={headerVariants}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+              >
+                What Our Clients Are Saying{" "}
+                <span className="text-primary">About Us</span>
+              </motion.h2>
+              <motion.p
+                className="text-general-sans-16 text-light"
+                variants={titleVariants}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+              >
+                Real feedback from real businesses who've seen real results.
+              </motion.p>
+            </div>
+          </div>
+        </div>
+
+        {/* Slider container - calculated left margin for 1200px content width */}
+        <div className="w-full overflow-hidden">
+          <div
+            className="ml-[calc((100vw-1200px)/2)] xl:ml-[360px]"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             <Swiper
-              modules={[Pagination, Autoplay]}
+              ref={swiperRef}
+              modules={[Autoplay]}
               spaceBetween={24}
-              slidesPerView={1}
-              pagination={{
-                clickable: true,
-                bulletClass: "swiper-pagination-bullet testimonial-bullet",
-                bulletActiveClass: "testimonial-bullet-active",
-              }}
+              slidesPerView="auto"
+              slidesPerGroup={1}
               autoplay={{
-                delay: 5000,
+                delay: 3000,
                 disableOnInteraction: false,
               }}
-              breakpoints={{
-                640: {
-                  slidesPerView: 1,
-                  spaceBetween: 24,
-                },
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: 24,
-                },
-                1024: {
-                  slidesPerView: 3,
-                  spaceBetween: 24,
-                },
-              }}
-              className="testimonials-swiper"
+              loop={true}
+              speed={800}
+              centeredSlides={false}
+              freeMode={false}
+              watchOverflow={true}
             >
-              {testimonials.map((testimonial) => (
-                <SwiperSlide key={testimonial.id}>
-                  <div
-                    className="h-full"
-                    style={{
-                      padding: "24px",
-                      borderRadius: "12px",
-                      backgroundColor: "var(--color-card, #192420)",
-                    }}
+              {testimonials.map((testimonial, index) => (
+                <SwiperSlide
+                  key={`${testimonial.id}-${index}`}
+                  style={{ width: "380px" }}
+                >
+                  <motion.div
+                    className="h-full bg-card rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow duration-300"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: (index % 4) * 0.1 }}
                   >
                     {/* Stars */}
-                    <div
-                      className="flex items-center mb-6"
-                      style={{ gap: "8px" }}
-                    >
-                      {[...Array(5)].map((_, index) => (
+                    <div className="flex items-center gap-1 mb-6">
+                      {[...Array(5)].map((_, starIndex) => (
                         <Star
-                          key={index}
+                          key={starIndex}
                           size={16}
-                          fill="var(--color-primary, #1FFFA5)"
-                          color="var(--color-primary, #1FFFA5)"
+                          className="text-primary fill-primary"
                         />
                       ))}
                     </div>
 
                     {/* Testimonial Text */}
-                    <p
-                      className="mb-9"
-                      style={{
-                        color: "var(--color-text-light, #F5F5F5)",
-                        fontFamily: 'var(--font-general-sans, "General Sans")',
-                        fontSize: "16px",
-                        fontStyle: "normal",
-                        fontWeight: "400",
-                        lineHeight: "24px",
-                        letterSpacing: "0px",
-                        marginBottom: "36px",
-                      }}
-                    >
+                    <p className="mb-9 text-general-sans-16 text-light leading-relaxed">
                       "{testimonial.text}"
                     </p>
 
                     {/* Author Info */}
-                    <div className="flex items-center" style={{ gap: "12px" }}>
-                      <div
-                        style={{
-                          width: "36px",
-                          height: "36px",
-                          borderRadius: "36px",
-                          backgroundImage: `url(${testimonial.avatar})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                          backgroundRepeat: "no-repeat",
-                          backgroundColor: "lightgray",
-                        }}
-                      />
-                      <div
-                        style={{
-                          gap: "2px",
-                          display: "flex",
-                          flexDirection: "column",
-                        }}
-                      >
-                        <div
-                          style={{
-                            color: "var(--color-text-light, #F5F5F5)",
-                            fontFamily:
-                              'var(--font-general-sans, "General Sans")',
-                            fontSize: "16px",
-                            fontStyle: "normal",
-                            fontWeight: "500",
-                            lineHeight: "normal",
-                            letterSpacing: "0px",
-                          }}
-                        >
+                    <div className="flex items-center gap-3">
+                      <div className="relative w-9 h-9 rounded-full overflow-hidden flex-shrink-0">
+                        <Image
+                          src={testimonial.avatar}
+                          width={36}
+                          height={36}
+                          className="rounded-full object-cover w-full h-full"
+                          alt={testimonial.name}
+                        />
+                      </div>
+                      <div className="flex flex-col gap-0.5 min-w-0">
+                        <div className="text-general-sans-16 text-light font-medium truncate">
                           {testimonial.name}
                         </div>
-                        <div
-                          style={{
-                            color: "var(--color-text-light, #F5F5F5)",
-                            fontFamily:
-                              'var(--font-general-sans, "General Sans")',
-                            fontSize: "12px",
-                            fontStyle: "normal",
-                            fontWeight: "400",
-                            lineHeight: "18px",
-                            letterSpacing: "0px",
-                          }}
-                        >
+                        <div className="text-general-sans-12 text-secondary-light truncate">
                           {testimonial.designation}
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
         </div>
       </div>
-
-      <style jsx global>{`
-        .testimonials-swiper {
-          padding-bottom: 50px !important;
-        }
-
-        .testimonial-bullet {
-          width: 8px !important;
-          height: 8px !important;
-          background: rgba(255, 255, 255, 0.3) !important;
-          border-radius: 50% !important;
-          opacity: 1 !important;
-          margin: 0 4px !important;
-          transition: all 0.3s ease !important;
-        }
-
-        .testimonial-bullet-active {
-          background: var(--color-primary, #1fffa5) !important;
-          width: 12px !important;
-          height: 12px !important;
-        }
-
-        .testimonials-swiper .swiper-pagination {
-          bottom: 0 !important;
-        }
-      `}</style>
     </section>
   );
 };

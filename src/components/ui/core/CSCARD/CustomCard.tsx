@@ -24,7 +24,7 @@ const CustomCard = ({
       className="bg-card p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
     >
       <div className="flex flex-col items-start">
-        <Icon className="w-10 h-10 text-primary mb-9" />
+        <Icon className="w-12 h-12 text-primary mb-9" />
         <h3 className="text-manrope-medium-16 text-light mb-3">{title}</h3>
         <p className="text-general-sans-14 text-secondary-light">
           {description}

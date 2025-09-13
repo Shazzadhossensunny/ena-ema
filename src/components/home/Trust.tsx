@@ -51,7 +51,7 @@ const Trust = () => {
   ];
 
   return (
-    <section className="py-15 px-4 sm:px-6 lg:px-8">
+    <section className="pb-30 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-[1440px]  mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1200px] mx-auto">
           {/* Header */}

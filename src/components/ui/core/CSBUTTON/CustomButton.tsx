@@ -10,7 +10,7 @@ interface ButtonProps extends HTMLMotionProps<"button"> {
   iconPosition?: "left" | "right";
   loading?: boolean;
   children: React.ReactNode;
-  width?: any;
+  width?: "auto" | "full" | string | number;
 }
 
 export const CustomButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -24,6 +24,7 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       loading = false,
       children,
       disabled,
+      width = "auto",
       ...props
     },
     ref
@@ -56,6 +57,23 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       lg: "px-8 py-4 text-base rounded-lg",
     };
 
+    // Handle width classes and styles
+    const getWidthStyle = () => {
+      if (width === "full") return "w-full";
+      if (width === "auto") return "";
+      return ""; // For custom width values, we'll use inline styles
+    };
+
+    const getInlineWidthStyle = () => {
+      if (typeof width === "string" && width !== "full" && width !== "auto") {
+        return { width };
+      }
+      if (typeof width === "number") {
+        return { width: `${width}px` };
+      }
+      return {};
+    };
+
     const primaryButtonStyle =
       variant === "primary"
         ? {
@@ -65,13 +83,18 @@ export const CustomButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
             fontSize: "16px",
             fontWeight: "500",
             lineHeight: "normal",
+            ...getInlineWidthStyle(),
           }
-        : {};
+        : {
+            ...getInlineWidthStyle(),
+          };
 
     return (
       <motion.button
         ref={ref}
-        className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+        className={`${baseStyles} ${variants[variant]} ${
+          sizes[size]
+        } ${getWidthStyle()} ${className}`}
         style={primaryButtonStyle}
         disabled={disabled || loading}
         whileHover={{ scale: disabled || loading ? 1 : 1.02 }}

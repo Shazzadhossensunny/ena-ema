@@ -5,11 +5,11 @@ import Image from "next/image";
 
 const Header = () => {
   return (
-    <header className="relative w-full bg-background overflow-hidden">
+    <header className="relative w-full">
       {/* Background glow effect behind logo */}
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div
-          className="w-[816px] h-[252px] rounded-full opacity-20 bg-primary blur-[175.7px]"
+          className="w-[816px] h-[252px] rounded-[816px] opacity-20 bg-primary blur-[175.7px]"
           style={{
             background: "var(--color-primary)",
             filter: "blur(175.7px)",
@@ -41,8 +41,8 @@ const Header = () => {
                       src="/images/logo.png"
                       alt="Ena Ema Technologies Logo"
                       width={120}
-                      height={40}
-                      className="mx-auto h-10 w-auto"
+                      height={27}
+                      className="mx-auto h-[24px] w-auto object-cover"
                       priority
                     />
                   </motion.div>

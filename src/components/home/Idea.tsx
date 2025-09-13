@@ -68,7 +68,7 @@ const ProcessCard: React.FC<ProcessCardProps> = ({ step, index }) => {
     >
       {/* Day Badge */}
       <motion.div
-        className="absolute left-1/2 -translate-x-1/2 -top-2 px-2 py-1 rounded-full border border-primary bg-background"
+        className="absolute left-1/2 -translate-x-1/2 -top-3.5 px-2 rounded-full border border-primary bg-background"
         variants={badgeVariants}
         initial="initial"
         animate="animate"
@@ -78,7 +78,7 @@ const ProcessCard: React.FC<ProcessCardProps> = ({ step, index }) => {
 
       {/* Icon */}
       <motion.div
-        className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-foreground mb-9"
+        className="inline-flex items-center justify-center p-6 rounded-full bg-foreground mb-9"
         variants={iconVariants}
         initial="initial"
         animate="animate"
@@ -118,14 +118,14 @@ const IdeaSection: React.FC = () => {
       icon: Palette,
       title: "Design & Development",
       description:
-        "We create your custom landing page with proven conversion frameworks.",
+        "Unlimited revisions until perfect. You're involved every step.",
     },
     {
       day: "Day 5",
       icon: Rocket,
-      title: "Launch & Deliver",
+      title: "Launch",
       description:
-        "Your landing page goes live and starts converting visitors into customers.",
+        "Fully deployed on your hosting and ready to convert visitors.",
     },
   ];
 
@@ -166,14 +166,7 @@ const IdeaSection: React.FC = () => {
   };
 
   return (
-    <section
-      className="relative py-30 bg-background overflow-hidden"
-      style={{
-        paddingTop: "120px",
-        paddingBottom: "120px",
-        backgroundColor: "var(--color-background, #151E1B)",
-      }}
-    >
+    <section className="relative py-30">
       {/* Left Blur Effect */}
       <motion.div
         className="absolute left-0 top-1/2 transform -translate-y-1/2 pointer-events-none"
@@ -207,7 +200,7 @@ const IdeaSection: React.FC = () => {
             </motion.h2>
 
             <motion.p
-              className="text-general-sans-16 text-light max-w-2xl mx-auto"
+              className="text-general-sans-16 text-light"
               variants={titleVariants}
               initial="initial"
               whileInView="animate"

@@ -8,7 +8,7 @@ import { CustomButton } from "../ui/core/CSBUTTON/CustomButton";
 
 const HeroSection = () => {
   return (
-    <section className="relative w-full bg-background py-[60px]">
+    <section className="relative w-full py-[60px]">
       {/* Container */}
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1200px] mx-auto">
@@ -29,7 +29,7 @@ const HeroSection = () => {
 
           {/* Main Heading - Responsive */}
           <motion.div
-            className="text-center mb-6"
+            className="text-center mb-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -64,13 +64,13 @@ const HeroSection = () => {
 
           {/* Description - Responsive */}
           <motion.div
-            className="text-center mb-4"
+            className="text-center mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <p
-              className="text-light max-w-[960px] mx-auto px-4"
+              className="text-light max-w-[990px] mx-auto px-4"
               style={{
                 fontFamily: "var(--font-general-sans)",
                 fontSize: "clamp(16px, 2vw, 18px)",

@@ -69,7 +69,7 @@ const CaseStudiesSection = () => {
           <h2 className="text-manrope-medium-48 text-light mb-2 tracking-tight">
             Case Studies
           </h2>
-          <p className="text-general-sans-16 text-light max-w-2xl mx-auto">
+          <p className="text-general-sans-16 text-light">
             See the designs that delivered results
           </p>
         </motion.div>
